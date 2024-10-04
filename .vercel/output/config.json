@@ -1,0 +1,57 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"src": "/en",
+			"headers": {
+				"Location": "/en-ca/"
+			},
+			"status": 301
+		},
+		{
+			"src": "/fr",
+			"headers": {
+				"Location": "/fr-ca/"
+			},
+			"status": 301
+		},
+		{
+			"src": "/us",
+			"headers": {
+				"Location": "/en-us"
+			},
+			"status": 301
+		},
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^\\/_image$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/en\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/fr\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/us\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "/.*",
+			"dest": "/404.html",
+			"status": 404
+		}
+	]
+}
